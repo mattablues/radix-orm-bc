@@ -1,0 +1,35 @@
+{
+    "name": "mats/radix-framework",
+    "description": "Radix System Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mats Åkebrand",
+            "email": "malle@akebrands.se"
+        }
+    ],
+        "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Radix\\": "src"
+        },
+        "files": [
+            "support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Radix\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "psr/container": "^2.0",
+        "ext-xdebug": "*",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2",
+        "phpunit/phpunit": "^9.5"
+    }
+}
