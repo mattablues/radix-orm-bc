@@ -8,6 +8,9 @@ use AllowDynamicProperties;
 use Radix\Database\ORM\Relation\BelongsToRelation;
 use Radix\Model\Model;
 
+/**
+ * @method static get()
+ */
 #[AllowDynamicProperties]
 class Profile extends Model
 {

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Model\Post;
+use App\Model\Profile;
 use App\Model\User;
 use Dotenv\Dotenv;
 use Radix\Database\QueryBuilder;
@@ -16,14 +18,14 @@ $queryBuilder= new QueryBuilder();
 
 try {
 
-dd(User::where('id', '=', 1)->orWhereLike('name', 'al')->whereLike('age', 21)->get());
+/*dd(User::where('id', '=', 1)->orWhereLike('name', 'al')->whereLike('age', 21)->get());*/
 /*    $result = $queryBuilder->table('users')
         ->whereLike('name', 'al', 'start')
         ->orWhereLike('name', 'al', 'end')
         ->get();
 dd($result, $queryBuilder->getParams());*/
 
-//dd(User::get());
+/*dd(User::get());*/
 /*$user = User::with(['profile'])->where('id', '=', 1)->first();
 dd($user->profile()->get());*/
 
@@ -81,185 +83,183 @@ dd($user->ratedPosts());*/
 
 /* ----------------------------------------------------------------------- here */
 
-/*    $user = User::find(20);
-    $user->profile()->create(['country' => 'Russia', 'city' => 'Moskva']);*/
+/*$user = User::find(9);
+dd($user->profile()->create(['country' => 'Russia', 'city' => 'Moskva']));*/
 
 //$user = User::create(['name' => 'Malowski', 'age' => 29]);
+//dd($user);
 
 /*    $user = User::find(1);
     $user->posts()->create(['title' => 'New malte post']);*/
 
 
-/*    $profile = Profile::get();
-    var_dump($profile);*/
+/*$profile = Profile::get();
+dd($profile);*/
 
 // With has one relation
 
-/*    $profile = Profile::with(['user'])->first();
-    echo $profile->user->name;*/
+/*$profile = Profile::with(['user'])->first();
+echo $profile->user->name;*/
 
-/*    $user = User::with(['profile'])->first();
-    echo $user->profile->country;*/
+/*$user = User::with(['profile'])->first();
+echo $user->profile->country;*/
 
 // With and has many relation
-/*    $user = User::with(['posts'])->get();
-    $user = $user[0];
-    foreach($user->posts as $post) {
-        echo $post->title . '<br>';
-    }*/
+/*$user = User::with(['posts'])->get();
+$user = $user[0];
+foreach($user->posts as $post) {
+    echo $post->title . '<br>';
+}
 
-//var_dump($user);
+dd($user);*/
 
-/*    $user = User::with(['profile', 'posts' => function($posts) {
-        $posts->where('created_at', '>', '2020-09-23');
-    }])->limit(20)->get();
-    var_dump($user);*/
+/*$user = User::with(['profile', 'posts' => function($posts) {
+    $posts->where('created_at', '>', '2020-09-23');
+}])->limit(20)->get();
+dd($user);*/
 
 // Relationships
+/*$profile = Profile::first();
+dd($profile->user()->first()->name);*/
 
-/*    $profile = Profile::first();
-    var_dump($profile->user()->first()->name);*/
+/*$user = User::first();
+dd($user->profile()->create(['id' => $user->id, 'country' => 'Sweden', 'city' => 'Alingsås']));*/
 
-/*    $user = User::first();
-    var_dump($user->profile()->create(['id' => $user->id, 'country' => 'Sweden', 'city' => 'Alingsås']));*/
+/*$posts = Post::first();
+$user = $posts->user()->get();
+dd($user);*/
 
-/*    $posts = Post::first();
-    $user = $posts->user()->get();
-    var_dump($user);*/
+/*$user = User::find(1);
+$user->posts()->create(['title' => 'My Created Post']);*/
 
-/*    $user = User::find(1);
-    $user->posts()->create(['title' => 'My Created Post']);*/
+/*$user = User::find(1);
+dd($user->posts()->delete());*/
+/*$user = User::find(2);
+$post = $user->posts()->where('title', '=', 'alex post 1')->update(['title' => 'alex first updated post']);
+dd($post);*/
 
-//$user->posts()->delete();
+/*$user = User::find(2);
+$posts = $user->posts()->get();
+foreach($posts as $post) {
+    echo $post->title . '<br>';
+}*/
 
-/*    $post = $user->posts()->where('title', '=', 'malte first post')->update(['title' => 'malte first updated post']);
-    var_dump($post);*/
+/*$user = User::find(1);
+$posts = $user->posts();
+dd($posts->toSql());*/
 
-/*    $posts = $user->posts()->get();
-    foreach($posts as $post) {
-        echo $post->title . '<br>';
-    }*/
-
-/*    $user = User::find(1);
-    $posts = $user->posts();
-    var_dump($posts->toSql());*/
-
-
-/*    $user = User::find(1);
-    $posts = $user->posts()->where('id', '=', 3)->first();
-    var_dump($posts);*/
+/*$user = User::find(2);
+$posts = $user->posts()->where('id', '=', 11)->first();
+dd($posts);*/
 
 // Save method update user
-/*    $user = User::first();
-    $user->name = 'Malte';
-    $user->save();*/
+/*$user = User::first();
+$user->name = 'Malte';
+$user->save();*/
 
-/*    $user = User::find(17);
-    $user->name = 'alexander';
-    $user->save();*/
+/*$user = User::find(2);
+$user->name = 'Alexander';
+dd($user->save());*/
 
 // Save method new user
-/*    $user = new User();
-    $user->name = 'Helge';
-    $user->age = 65;
-    $user->test = 'hello';
-    $user->save();*/
+/*$user = new User();
+$user->name = 'Helge';
+$user->age = 65;
+dd($user->save());*/
 
-/*    $user =  User::find(5)->updateSingle(['age' => 2]);
-    var_dump($user);*/
+/*$user =  User::find(5)->change(['age' => 20]);
+dd($user);*/
 
-//User::find(5)->remove();
+/*$user = User::find(10)->remove();
+dd($user);*/
 
-//User::update(['age' => 30]);
+/*User::update(['age' => 30]);*/
 
-//User::where('name', '=', 'Mats')->orWhere('id', '=', 2)->update(['age' => 30]);
+/*User::where('name', '=', 'Melina')->orWhere('id', '=', 5)->update(['age' => 27]);*/
 
 //User::where('id', '=', 7)->delete();
 
-/*    $user = User::select()->where('name', '=', 'Mats')->first();
-    echo '<pre>';
-    var_dump($user);
-    echo '</pre>';
-    exit();*/
+/*$user = User::select()->where('name', '=', 'Malte')->first();
+dd($user);*/
 
-/*        $data = [
-        ['name' => 'Mats', 'age' => 55],
-        ['name' => 'Hugo', 'age' => 9],
-        ['name' => 'Wilma', 'age' => 22],
-        ['name' => 'Moa', 'age' => 25],
-        ['name' => 'Lou', 'age' => 2],
-        ['name' => 'Simon', 'age' => 30],
-        ['name' => 'Martin', 'age' => 24],
-    ];
-    $queryBuilder= new \Core\Database\CommandBuilder();
-    echo $builder->table('users')->insert($data);*/
+/*$data = [
+    ['name' => 'Mats', 'age' => 55],
+    ['name' => 'Hugo', 'age' => 11],
+    ['name' => 'Wilma', 'age' => 24],
+    ['name' => 'Moa', 'age' => 27],
+    ['name' => 'Lou', 'age' => 4],
+    ['name' => 'Simon', 'age' => 32],
+    ['name' => 'Martin', 'age' => 26],
+];
+
+dd($queryBuilder->table('users')->insert($data));*/
 
 
 //$user = User::select()->where('name', '=', 'Mats')->first();
+//dd($user);
 
-//var_dump($user);
+//User::create(['name' => 'alexandra', 'age' => 100]);
 
-//var_dump(User::create(['name' => 'alexandra', 'age' => 100]));
+/*dd(User::where('id', '>', 2)->first());*/
 
-//var_dump(User::where('id', '>', 2)->first());
+/*dd(User::first());*/
 
-//var_dump(User::first());
+/*dd(User::where('name', '=', 'Mats')->orWhere('name', '=', 'malle')->avg('age'));*/
 
-//echo User::where('name', '=', 'Mats')->orWhere('name', '=', 'malle')->avg('age');
-
-//    $user = User::select(['name', 'age'])->where('age', '=', 55)->orWhere('name', '=', 'kalle')->get();
-//    var_dump($user);
-
-
-//var_dump($builder->table('users')->where('name', '=', 'Malte')->update(['name' => 'Mats']));
-
-//echo $builder->table('users')->where('id', '=', 29)->delete();
-
-//    $data = [
-//        ['name' => 'Helmut', 'age' => 2],
-//        ['name' => 'Forza', 'age' => 9],
-//    ];
-//    echo $builder->table('users')->insert($data);
-
-//    $users = $builder->table('users')->get(User::class);
-//    var_dump($users);
-//    $avg = $builder->table('users')->avg('age');
-//    echo 'AVG: ' . $avg . '<br>';
-//    $min = $builder->table('users')->min('age');
-//    echo 'MIN: ' . $min . '<br>';
-//    $max = $builder->table('users')->max('age');
-//    echo 'MAX: ' . $max . '<br>';
-//    $sum = $builder->table('users')->sum('age');
-//    echo 'SUM: ' . $sum . '<br>';
-//    $count = $builder->table('users')->count('age');
-//    echo 'COUNT: ' . $count . '<br>';
-
-//$users = $builder->table('users')->get();
-//
-//var_dump($users);
-
-//    $query = $builder->table('users')
-//        ->join('posts', 'users.id', '=', 'posts.user_id')
-//        ->whereIn('name', ['mats', 'hugo'])->get();
-//    var_dump($query, 'shit');
+/*$user = User::select(['name', 'age'])->where('age', '=', 55)->orWhere('name', '=', 'Malte')->get();
+dd($user);*/
 
 
-//    $query = $builder->table('users')->whereIn('name', ['mats',  'matte'])->orWhereIn('age', [20, 30, 40])->orWhere(function($builder) {
-//        $builder->where('age', '>', 20)->orWhereIn('name', ['hugo', 'malle']);
-//    })->get();
-//    var_dump($query);
+/*dd($queryBuilder->table('users')->where('name', '=', 'Malte')->update(['name' => 'Mats']));*/
+
+/*dd($queryBuilder->table('users')->where('id', '=', 24)->delete());*/
+
+/*$data = [
+    ['name' => 'Helmut', 'age' => 2],
+    ['name' => 'Forza', 'age' => 9],
+];
+dd($queryBuilder->table('users')->insert($data));*/
+
+/*$users = $queryBuilder->table('users')->get(User::class);
+$avg = $queryBuilder->table('users')->avg('age');
+echo 'AVG: ' . $avg . '<br>';
+$min = $queryBuilder->table('users')->min('age');
+echo 'MIN: ' . $min . '<br>';
+$max = $queryBuilder->table('users')->max('age');
+echo 'MAX: ' . $max . '<br>';
+$sum = $queryBuilder->table('users')->sum('age');
+echo 'SUM: ' . $sum . '<br>';
+$count = $queryBuilder->table('users')->count('age');
+echo 'COUNT: ' . $count . '<br>';*/
+
+/*$users = $queryBuilder->table('users')->get();
+dd($users);*/
+
+/*$query = $queryBuilder->table('users')
+    ->join('posts', 'users.id', '=', 'posts.user_id')
+    ->whereIn('name', ['alexander', 'mats'])->get();
+dd($query);*/
 
 
-//    $query = $builder->table('users')->where('age', '<', 100)->orWhere('age', '>', 20)->where(function($builder) {
-//        $builder->where('name', '=', 'alex')->orWhere('name', '=', 'alex')->getQueryString();
-//    })->get();
-//    var_dump($query);
+/*$query = $queryBuilder->table('users')->whereIn('name', ['mats',  'matte'])->orWhereIn('age', [20, 30, 40])->orWhere(function($builder) {
+    $builder->where('age', '>', 20)->orWhereIn('name', ['hugo', 'malle']);
+})->get();
+dd($query);*/
 
-//$query = $builder->orderBy('id')->table('users')->get();
 
-//    $query = $builder->table('users')->where('name', '=', 'Mats')->where(function($builder) {
-//        $builder->where('age', '>', 20)->where('age', '<', 100);
-//    })->get();
+/*$query = $queryBuilder->table('users')->where('age', '<', 100)->orWhere('age', '>', 20)->where(function($builder) {
+    $builder->where('name', '=', 'alex')->orWhere('name', '=', 'alex')->getQueryString();
+})->get();
+dd($query);*/
+
+/*$query = $queryBuilder->orderBy('id')->table('users')->get();
+dd($query);*/
+
+/*$query = $queryBuilder->table('users')->where('name', '=', 'Mats')->where(function($builder) {
+    $builder->where('age', '>', 20)->where('age', '<', 100);
+})->get();
+
+dd($query);*/
 
 } catch (Exception $exception) {
     echo $exception->getMessage() . ' <pre>' . $exception->getTraceAsString() . '</pre>';
