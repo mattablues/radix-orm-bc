@@ -10,8 +10,8 @@
     ],
         "autoload": {
         "psr-4": {
-            "App\\": "app",
-            "Radix\\": "src"
+            "Radix\\": "Radix",
+            "App\\": "src"
         },
         "files": [
             "support/helpers.php"
@@ -24,9 +24,8 @@
     },
     "require": {
         "vlucas/phpdotenv": "^5.5",
-        "psr/container": "^2.0",
-        "ext-xdebug": "*",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.2",

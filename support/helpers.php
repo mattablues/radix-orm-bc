@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use JetBrains\PhpStorm\NoReturn;
 use Radix\Configuration\Env;
 
 if(!function_exists('env')) {
@@ -41,5 +42,13 @@ if (!function_exists('get_object_public_fields')) {
     function get_object_public_fields(object $obj): array
     {
         return get_object_vars($obj);
+    }
+}
+
+if (!function_exists('redirect')) {
+    #[NoReturn] function redirect(string $url): void
+    {
+        header('Location: ' . $url, true, 303);
+        exit();
     }
 }

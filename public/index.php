@@ -11,61 +11,75 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-$builder = new QueryBuilder();
+$queryBuilder= new QueryBuilder();
 
-//$user = User::with(['profile'])->where('id', '=', 2)->first();
-//var_dump($user->profile()->get());
 
-//$user = User::find(1);
-//
-//var_dump($user->change(['name' => 'Mats']));
+try {
 
-//$queryBuilder = new QueryBuilder();
-//$query = $queryBuilder->table('ratings')->sum('rating');
-//var_dump($query);
+dd(User::where('id', '=', 1)->orWhereLike('name', 'al')->whereLike('age', 21)->get());
+/*    $result = $queryBuilder->table('users')
+        ->whereLike('name', 'al', 'start')
+        ->orWhereLike('name', 'al', 'end')
+        ->get();
+dd($result, $queryBuilder->getParams());*/
 
-//$user = User::with(['profile'])->where('id', '=', 2)->first();
-//var_dump($user);
+//dd(User::get());
+/*$user = User::with(['profile'])->where('id', '=', 1)->first();
+dd($user->profile()->get());*/
 
-//$user = User::find(1);
-//var_dump($user);
-//var_dump($user->profile()->first());
-//var_dump($user->posts()->get());
-//$user = User::findOrFail(9);
-//$user->name = 'Kollo';
-//$user->save();
-//var_dump(User::get());
+/*$user = User::find(1);
+dd($user);
+dd($user->change(['name' => 'Mats']));*/
 
-// Belongs to many relation
-// Detach
-//$user = User::find(9)->ratedPosts()->detach([11, 14, 20]);
-//var_dump($user);
+/*$queryBuilder = new QueryBuilder();
+$query = $queryBuilder->table('ratings')->sum('rating');
+dd($query);*/
+
+/*$user = User::with(['profile'])->where('id', '=', 2)->first();
+dd($user);*/
+
+/*$user = User::find(1);
+dd($user);
+dd($user->profile()->first(), $user->posts()->get());*/
+
+/*$user = User::findOrFail(10);
+$user->name = 'Kollo';
+$user->save();
+dd(User::get());*/
 
 // Attach
 //$user = User::create(['name' => 'Kalte', 'age' => 55]);
+//
+//
+/*$user = User::find(1);
+$user->ratedPosts()->attach([
+    20 => ['rating' => 2],
+    14 => ['rating' => 5]
+]);*/
 
-//    $user = User::find(10);
-//    $user->ratedPosts()->attach([
-//        11,
-//        20 => ['rating' => 2],
-//        14 => ['rating' => 5]
-//    ]);
+// Belongs to many relation
+// Detach
+/*$user = User::find(1)->ratedPosts()->detach([14, 20]);
+dd($user);*/
 
 
-//    $users = User::with(['ratedPosts'])->limit(2)->get();
-//    foreach($users as $user) {
-//        echo $user->name . '<br>';
-//        foreach($user->ratedPosts as $post) {
-//            echo $post->title . '<br>';
-//        }
-//    }
+/*$users = User::with(['ratedPosts'])->limit(2)->get();
+foreach($users as $user) {
+    echo $user->name . '<br>';
+    foreach($user->ratedPosts as $post) {
+        echo $post->title . '<br>';
+    }
+}*/
 
-//var_dump(User::with(['ratedPosts'])->first());
+/*dd(User::with(['ratedPosts'])->first());*/
 
-/*    $user = User::first();
-    var_dump($user->ratedPosts());*/
+/*$user = User::first();
+dd($user->ratedPosts());*/
 
-//User::update(['name' => 'name']);
+/*User::update(['name' => 'name']);*/
+
+
+/* ----------------------------------------------------------------------- here */
 
 /*    $user = User::find(20);
     $user->profile()->create(['country' => 'Russia', 'city' => 'Moskva']);*/
@@ -177,7 +191,7 @@ $builder = new QueryBuilder();
         ['name' => 'Simon', 'age' => 30],
         ['name' => 'Martin', 'age' => 24],
     ];
-    $builder = new \Core\Database\CommandBuilder();
+    $queryBuilder= new \Core\Database\CommandBuilder();
     echo $builder->table('users')->insert($data);*/
 
 
@@ -185,7 +199,7 @@ $builder = new QueryBuilder();
 
 //var_dump($user);
 
-var_dump(User::create(['name' => 'alexandra', 'age' => 100]));
+//var_dump(User::create(['name' => 'alexandra', 'age' => 100]));
 
 //var_dump(User::where('id', '>', 2)->first());
 
@@ -247,4 +261,8 @@ var_dump(User::create(['name' => 'alexandra', 'age' => 100]));
 //        $builder->where('age', '>', 20)->where('age', '<', 100);
 //    })->get();
 
-    var_dump($builder->getParams());
+} catch (Exception $exception) {
+    echo $exception->getMessage() . ' <pre>' . $exception->getTraceAsString() . '</pre>';
+} catch (Error $error) {
+    echo $error->getMessage() . ' <pre>' . $error->getTraceAsString() . '</pre>';
+}
