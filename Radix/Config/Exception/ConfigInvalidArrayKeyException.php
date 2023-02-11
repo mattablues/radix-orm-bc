@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Radix\Configuration\Exception;
+namespace Radix\Config\Exception;
 
 use Exception;
 

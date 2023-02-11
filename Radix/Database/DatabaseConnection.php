@@ -7,7 +7,7 @@ namespace Radix\Database;
 
 use PDO;
 use PDOException;
-use Radix\Configuration\Configurable;
+use Radix\Config\Configurable;
 use Radix\Database\Exception\DatabaseException;
 
 class DatabaseConnection

@@ -7,8 +7,8 @@ declare(strict_types=1);
 namespace Radix\Database;
 
 use PDOStatement;
-use Radix\Configuration\Config;
-use Radix\Configuration\Configurable;
+use Radix\Config\Config;
+use Radix\Config\Configurable;
 use stdClass;
 
 class QueryBuilder

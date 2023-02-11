@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use JetBrains\PhpStorm\NoReturn;
-use Radix\Configuration\Env;
+use Radix\Config\Env;
 
 if(!function_exists('env')) {
     function env(string $key): mixed

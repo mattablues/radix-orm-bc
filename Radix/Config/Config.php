@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Radix\Configuration;
+namespace Radix\Config;
 
-use Radix\Configuration\Exception\ConfigInvalidArrayKeyException;
+use Radix\Config\Exception\ConfigInvalidArrayKeyException;
 use Radix\Utility\ArrayFileExtractor;
 use Radix\Utility\Exception\ArrayFileHasInvalidKey;
 use Radix\Utility\Exception\ArrayFileInvalid;

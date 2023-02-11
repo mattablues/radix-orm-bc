@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Radix\Database\ORM\Relation;
 
-use Radix\Configuration\Config;
-use Radix\Configuration\Env;
+use Radix\Config\Config;
+use Radix\Config\Env;
 use Radix\Database\Database;
 use Radix\Database\DatabaseConnection;
 use stdClass;

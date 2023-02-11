@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Radix\Configuration;
+namespace Radix\Config;
 
 class Env implements Configurable
 {

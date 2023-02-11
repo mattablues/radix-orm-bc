@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Radix\Database\ORM;
 
 use PDOStatement;
-use Radix\Configuration\Config;
-use Radix\Configuration\Configurable;
+use Radix\Config\Config;
+use Radix\Config\Configurable;
 use Radix\Database\Database;
 use Radix\Database\DatabaseConnection;
 use Radix\Database\ORM\Relation\BelongsToManyRelation;

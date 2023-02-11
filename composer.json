@@ -8,7 +8,7 @@
             "email": "malle@akebrands.se"
         }
     ],
-        "autoload": {
+    "autoload": {
         "psr-4": {
             "Radix\\": "Radix",
             "App\\": "src"
